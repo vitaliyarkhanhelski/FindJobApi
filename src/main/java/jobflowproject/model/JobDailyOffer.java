@@ -30,4 +30,6 @@ public class JobDailyOffer {
     @ManyToOne
     @JoinColumn(name = "tag_id")
     private Tag tag;
+
+    private String city;
 }
