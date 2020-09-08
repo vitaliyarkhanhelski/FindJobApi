@@ -36,20 +36,25 @@ public class DataCommandLineApp implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Website website;
-        Tag tag = null;
+        Tag tag;
         if (!websiteRepository.findWebsite("pracuj").isPresent())
             website = websiteRepository.save(new Website("Pracuj", "http://pracuj.pl"));
         else website = websiteRepository.findWebsite("pracuj").get();
 
         String[] tags = {"java", "ruby", "project manager", "hr", "sprzątaczka", "programista"};
         String[] cities = {"warszawa", "kraków", "poznań", "gdańsk", "szczecin", "wrocław"};
-        for (String tagName : tags) {
-            if (!tagRepository.findByName(tagName).isPresent())
-                tag = tagRepository.save(new Tag(tagName));
-            else tag = tagRepository.findByName(tagName).get();
-            addJobDailyOffer(tag, website, "warszawa");
-        }
 
+
+        //potzebuje czasu by zaciagnac
+        for (String city : cities) {
+            for (String tagName : tags) {
+                if (!tagRepository.findByName(tagName).isPresent())
+                    tag = tagRepository.save(new Tag(tagName));
+                else tag = tagRepository.findByName(tagName).get();
+
+                addJobDailyOffer(tag, website, city);
+            }
+        }
 
 
 
