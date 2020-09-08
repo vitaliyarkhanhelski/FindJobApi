@@ -1,16 +1,17 @@
 package jobflowproject.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 public class JobDailyOffer {
 
     @Id
@@ -19,7 +20,7 @@ public class JobDailyOffer {
 
     private Integer number;
 
-    private LocalDate date;
+    private LocalDateTime date;
 
     private Integer description;
 

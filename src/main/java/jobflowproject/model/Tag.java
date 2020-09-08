@@ -16,7 +16,7 @@ import javax.persistence.Id;
 public class Tag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //sposób generowania id o 1 wiekszy
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;

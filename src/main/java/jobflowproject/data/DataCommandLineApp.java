@@ -1,19 +1,16 @@
 package jobflowproject.data;
 
-import jobflowproject.model.JobDailyOffer;
 import jobflowproject.model.Tag;
 import jobflowproject.model.Website;
 import jobflowproject.repository.JobDailyOfferRepository;
 import jobflowproject.repository.TagRepository;
 import jobflowproject.repository.WebsiteRepository;
+import jobflowproject.service.JobDailyOfferService;
 import jobflowproject.service.PracujPlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Optional;
 
 @Component
 public class DataCommandLineApp implements CommandLineRunner {
@@ -26,6 +23,9 @@ public class DataCommandLineApp implements CommandLineRunner {
 
     @Autowired
     private PracujPlService pracujPlService;
+
+    @Autowired
+    private JobDailyOfferService jobDailyOfferService;
 
     public DataCommandLineApp(TagRepository tagRepository, WebsiteRepository websiteRepository, JobDailyOfferRepository jobDailyOfferRepository) {
         this.tagRepository = tagRepository;
@@ -44,33 +44,17 @@ public class DataCommandLineApp implements CommandLineRunner {
         String[] tags = {"java", "ruby", "project manager", "hr", "sprzątaczka", "programista"};
         String[] cities = {"warszawa", "kraków", "poznań", "gdańsk", "szczecin", "wrocław"};
 
-
-        //potzebuje czasu by zaciagnac
         for (String city : cities) {
             for (String tagName : tags) {
                 if (!tagRepository.findByName(tagName).isPresent())
                     tag = tagRepository.save(new Tag(tagName));
                 else tag = tagRepository.findByName(tagName).get();
-
-                addJobDailyOffer(tag, website, city);
+                jobDailyOfferService.addJobDailyOffer(tag, website, city);
             }
         }
     }
 
 
-    private void addJobDailyOffer(Tag tag, Website website, String city) {
-        try {
-            Integer numberOfOffers = pracujPlService.getNumberOfJobs(tag.getName(), city);
-            JobDailyOffer jobDailyOffer = new JobDailyOffer();
-            jobDailyOffer.setCity(city);
-            jobDailyOffer.setDate(LocalDate.now());
-            jobDailyOffer.setTag(tag);
-            jobDailyOffer.setWebsite(website);
-            jobDailyOffer.setNumber(numberOfOffers);
-            jobDailyOfferRepository.save(jobDailyOffer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
 

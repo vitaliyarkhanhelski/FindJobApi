@@ -13,11 +13,4 @@ public class PracujPlService {
         String numberText = Jsoup.connect(url).get().getElementsByClass("results-header__offer-count-text-number").first().text();
         return Integer.parseInt(numberText);
     }
-
-
-//    public static void main(String[] args) throws IOException {
-//        PracujPlService pracujPlService = new PracujPlService();
-//        System.out.println(pracujPlService.getNumberOfJobs("sprzataczka","warszawa"));
-//    }
-
 }
