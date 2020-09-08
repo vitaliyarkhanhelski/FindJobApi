@@ -55,9 +55,6 @@ public class DataCommandLineApp implements CommandLineRunner {
                 addJobDailyOffer(tag, website, city);
             }
         }
-
-
-
     }
 
 
