@@ -15,6 +15,11 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Website {
 
+    public Website(String name, String url) {
+        this.name = name;
+        this.url = url;
+    }
+
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
