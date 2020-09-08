@@ -1,0 +1,13 @@
+package jobflowproject;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class JobFlowProjectApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(JobFlowProjectApplication.class, args);
+	}
+
+}
