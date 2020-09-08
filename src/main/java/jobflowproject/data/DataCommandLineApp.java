@@ -1,5 +1,6 @@
 package jobflowproject.data;
 
+import jobflowproject.model.Tag;
 import jobflowproject.model.Website;
 import jobflowproject.repository.JobDailyOfferRepository;
 import jobflowproject.repository.TagRepository;
@@ -29,5 +30,10 @@ public class DataCommandLineApp implements CommandLineRunner {
             website = websiteRepository.save(new Website("Pracuj", "http://pracuj.pl"));
         }
 
+        String[] tags = {"java", "ruby", "project manager", "hr", "sprzątaczka", "programista"};
+        for (String tag : tags)
+            if (!tagRepository.findByName(tag).isPresent())
+                tagRepository.save(new Tag(tag));
     }
 }
+
