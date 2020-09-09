@@ -1,5 +1,6 @@
 package jobflowproject.api;
 
+import io.swagger.annotations.ApiOperation;
 import jobflowproject.dto.JobDailyOfferDto;
 import jobflowproject.mapper.JobDailyOfferMapper;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,16 +13,14 @@ import java.util.List;
 @RestController
 public class JobController {
 
-
-    //zamienic to co dostaniemy na Dto
-
     private JobDailyOfferMapper jobDailyOfferMapper;
 
     public JobController(JobDailyOfferMapper jobDailyOfferMapper) {
         this.jobDailyOfferMapper = jobDailyOfferMapper;
     }
 
-    @GetMapping("")
+    @ApiOperation(value = "Show data for Front-End", notes="Show data for Front-End")
+    @GetMapping
     public List<JobDailyOfferDto>  getList(){
         return jobDailyOfferMapper.convertToListDailyOfferDto();
     }

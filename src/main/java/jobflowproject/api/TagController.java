@@ -1,5 +1,6 @@
 package jobflowproject.api;
 
+import io.swagger.annotations.ApiOperation;
 import jobflowproject.model.Tag;
 import jobflowproject.repository.TagRepository;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ public class TagController {
         this.tagRepository = tagRepository;
     }
 
+    @ApiOperation(value = "Show list of tags", notes="Show list of tags")
     @GetMapping
     public Iterable<Tag> getList(){
     return tagRepository.findAll();

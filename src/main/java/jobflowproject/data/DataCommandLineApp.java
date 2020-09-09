@@ -11,30 +11,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class DataCommandLineApp implements CommandLineRunner {
 
     private TagRepository tagRepository;
-
     private WebsiteRepository websiteRepository;
-
     private JobDailyOfferRepository jobDailyOfferRepository;
-
-    @Autowired
-    private PracujPlService pracujPlService;
-
-    @Autowired
     private JobDailyOfferService jobDailyOfferService;
 
-    public DataCommandLineApp(TagRepository tagRepository, WebsiteRepository websiteRepository, JobDailyOfferRepository jobDailyOfferRepository) {
+    public DataCommandLineApp(TagRepository tagRepository, WebsiteRepository websiteRepository, JobDailyOfferRepository jobDailyOfferRepository, JobDailyOfferService jobDailyOfferService) {
         this.tagRepository = tagRepository;
         this.websiteRepository = websiteRepository;
         this.jobDailyOfferRepository = jobDailyOfferRepository;
+        this.jobDailyOfferService = jobDailyOfferService;
     }
 
     @Override
     public void run(String... args){
+
+        jobDailyOfferRepository.deleteAll();
+
         Website website;
         Tag tag;
         if (!websiteRepository.findWebsite("pracuj").isPresent())

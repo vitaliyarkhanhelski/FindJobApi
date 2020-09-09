@@ -12,8 +12,6 @@ public interface WebsiteRepository extends CrudRepository<Website, Integer> {
     @Query(value="SELECT * FROM website WHERE name=?1 LIMIT 1", nativeQuery = true)
     Optional<Website> findWebsite(String name);
 
-
-
 }
 
 

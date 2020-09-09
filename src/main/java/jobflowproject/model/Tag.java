@@ -17,8 +17,6 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Tag {
 
-    //2 odpowiedzialnosci - Baza Danych i JSON   (niezgodne z zasada pojedynczej odpowiedzialnosci)
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

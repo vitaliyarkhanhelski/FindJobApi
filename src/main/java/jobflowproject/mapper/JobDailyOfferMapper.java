@@ -25,7 +25,5 @@ public class JobDailyOfferMapper {
                         jobDailyOffer.getCity(),
                         jobDailyOffer.getNumber())).
                 collect(Collectors.toList());
-        //guava tworzy immutable list, ale mozna na niej dziala jakby byla Guavova lista
     }
-
 }
