@@ -1,5 +1,7 @@
 package jobflowproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,12 +17,16 @@ import javax.persistence.Id;
 @NoArgsConstructor
 public class Tag {
 
+    //2 odpowiedzialnosci - Baza Danych i JSON   (niezgodne z zasada pojedynczej odpowiedzialnosci)
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @JsonProperty("nazwa")
     private String name;
 
+    @JsonIgnore
     private String description;
 
     public Tag(String name) {

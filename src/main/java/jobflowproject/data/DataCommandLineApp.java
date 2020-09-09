@@ -34,7 +34,7 @@ public class DataCommandLineApp implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args){
         Website website;
         Tag tag;
         if (!websiteRepository.findWebsite("pracuj").isPresent())
@@ -53,8 +53,5 @@ public class DataCommandLineApp implements CommandLineRunner {
             }
         }
     }
-
-
-
 }
 
